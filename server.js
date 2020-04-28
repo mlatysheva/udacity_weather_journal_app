@@ -25,21 +25,27 @@ app.use(express.static('website'));
 // Setup Server
 const port = 8000;
 
+// Produce feedback from the server through a callback function
 const server = app.listen(port, () => {
     console.log(`The server is running on localhost: ${port}`)
 })
 
-app.get('/all', function (req, res) {
-    res.send('hello world');
-    console.log(req)
+// Setup a GET route to return the app endpoint data
+app.get('/all', function (request, response) {
+	console.log(request);
+	response.send(projectData);
 })
 
-app.post("/data", function(req, res) {
+// Add a new entry to the projectData based on the data received from the client side
+
+app.post('/add', postData);
+
+function postData(request, response) {
 	const newData = {
-		temperature: req.body.temperature,
-		date: req.body.date,
-		userResponse: req.body.userResponse
+		temperature: request.body.temperature,
+		date: request.body.date,
+		userResponse: request.body.userResponse
 	};
-	projectData = newData;
-	res.send(newData);
-});
+	projectData.push(newData);
+	response.send(projectData);
+}

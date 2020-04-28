@@ -16,7 +16,8 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
-.holder{
+.holder:hover{
+    background: rgb(91, 108, 131)
 
 }
 
@@ -74,6 +75,12 @@ button{
     border: none;
     box-shadow: 2px 4px 5px #444;
 }
+
+button:hover {
+    background-color: rgb(141, 112, 148);
+    cursor: pointer;
+}
+
 h1{
     font-size: 36px;
 }
