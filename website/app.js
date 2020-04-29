@@ -19,32 +19,47 @@ const getWeatherData = async (event)=>{
     const response = await fetch(entireUrl)
     try {  
       const data = await response.json();
-      console.log(data)
+      console.log(data);
+      postData('http://localhost:8000/add', {date: today, city: data.name, temperature: data.main.temp, userResponse: feelings});  
       return data;
     } catch(error) {
       console.log("error", error);
       // appropriately handle the error
-    }
+    }    
   }
+  
 // Set the button Generate to listen to a click and call the function
 
 button.addEventListener('click', getWeatherData);
 
 // Get data from the app endpoint as an asyncronous function
 // TODO
-const getData = async (event) => {
-  const response = await fetch('url')
+const getData = async (url = '', data = {}) => {
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  try {
+    const newDAta = await response.json();
+    return newData;
+  }catch (error) {
+    console.log('error is ', error);
+  }
 }
 
 // Post data to the app endpoint as an asynchronous function
 
-const postData = async (url = ''. data = {}) => {
+const postData = async (url = '', data = {}) => {
   //console.log(data);
   const response = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'appication/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   });
@@ -58,4 +73,3 @@ const postData = async (url = ''. data = {}) => {
   }
 }
 
-postData('/add', {temperature: data.main.temp, date: today, userResponse: feelings});
