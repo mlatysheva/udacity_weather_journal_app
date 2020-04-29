@@ -9,7 +9,7 @@ body{
     /* grid-template-columns:  */
     height:100vh;
     background: #f23557;
-    color: #f0d43a;
+    color: rgb(71, 23, 23);
     justify-content: center;
     grid-gap: 1em;
     font-size: 20px;
@@ -22,10 +22,12 @@ body{
 }
 
 .entry{
-    background: rgba(59, 74, 107, .4);
+    background-image: url("./image.JPG");
+    background-size: contain;
 }
 
 #entryHolder{
+    background: rgb(211, 99, 155);
 
 }
 
@@ -45,6 +47,7 @@ body{
 
 }
 .title{
+    font: rgb(58, 31, 31);
 
 }
 
